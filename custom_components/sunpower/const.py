@@ -192,3 +192,38 @@ PVS_SENSORS = {
         STATE_CLASS_MEASUREMENT
         ],
 }
+
+
+PVDR_SENSORS = {
+    "PVDR_GRID1": [
+        "v1n_grid_v",
+        "Voltage",
+        ELECTRIC_POTENTIAL_VOLT,
+        "mdi:flash",
+        DEVICE_CLASS_VOLTAGE,
+        STATE_CLASS_MEASUREMENT],
+
+    "PVDR_GRID2": [
+        "v2n_grid_v",
+        "Voltage",
+        ELECTRIC_POTENTIAL_VOLT,
+        "mdi:flash",
+        DEVICE_CLASS_VOLTAGE,
+        STATE_CLASS_MEASUREMENT],
+
+    "PVDR_PV1": [
+        "v1n_pv_v",
+        "Voltage",
+        ELECTRIC_POTENTIAL_VOLT,
+        "mdi:flash",
+        DEVICE_CLASS_VOLTAGE,
+        STATE_CLASS_MEASUREMENT],
+
+    "PVDR_PV2": [
+        "v2n_pv_v",
+        "Voltage",
+        ELECTRIC_POTENTIAL_VOLT,
+        "mdi:flash",
+        DEVICE_CLASS_VOLTAGE,
+        STATE_CLASS_MEASUREMENT],
+}
