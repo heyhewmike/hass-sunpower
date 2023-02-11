@@ -75,3 +75,49 @@ class SunPowerInverterEntity(CoordinatorEntity):
             "via_device": self._pvs_info["SERIAL"],
         }
         return device_info
+
+class SunPowerESSEntity(CoordinatorEntity):
+    """Base class for sunpower ESS entities."""
+
+    def __init__(self, coordinator, ess_info, pvs_info):
+        """Initialize the sensor."""
+        super().__init__(coordinator)
+        self.base_unique_id = ess_info["SERIAL"]
+        self._pvs_info = pvs_info
+        self._ess_info = ess_info
+
+    @property
+    def device_info(self):
+        """Sunpower ESS device info."""
+        device_info = {
+            "identifiers": {(DOMAIN, self.base_unique_id)},
+            "name": self._ess_info["DESCR"],
+            "manufacturer": self._ess_info["TYPE"],
+            "model": self._ess_info["MODEL"],
+            "sw_version": self._ess_info["SWVER"],
+            "via_device": self._pvs_info["SERIAL"],
+        }
+        return device_info
+
+class SunPowerPVDREntity(CoordinatorEntity):
+    """Base class for sunpower PVDR entities."""
+
+    def __init__(self, coordinator, pvdr_info, pvs_info):
+        """Initialize the sensor."""
+        super().__init__(coordinator)
+        self.base_unique_id = pvdr_info["SERIAL"]
+        self._pvs_info = pvs_info
+        self._pvdr_info = pvdr_info
+
+    @property
+    def device_info(self):
+        """Sunpower PVDR device info."""
+        device_info = {
+            "identifiers": {(DOMAIN, self.base_unique_id)},
+            "name": self._pvdr_info["DESCR"],
+            "manufacturer": self._pvdr_info["TYPE"],
+            "model": self._pvdr_info["MODEL"],
+            "sw_version": self._pvdr_info["SWVER"],
+            "via_device": self._pvs_info["SERIAL"],
+        }
+        return device_info

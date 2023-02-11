@@ -31,17 +31,24 @@ SUNPOWER_OBJECT = "sunpower"
 SUNPOWER_HOST = "host"
 SUNPOWER_COORDINATOR = "coordinator"
 UPDATE_INTERVAL = 120
+#UPDATE_INTERVAL = 240
 SETUP_TIMEOUT_MIN = 5
 
 PVS_DEVICE_TYPE = "PVS"
 INVERTER_DEVICE_TYPE = "Inverter"
 METER_DEVICE_TYPE = "Power Meter"
+ESS_DEVICE_TYPE = "Energy Storage System"
+PVDR_DEVICE_TYPE = "PV Disconnect"
 
 PVS_STATE = "STATE"
 
 METER_STATE = "STATE"
 
 INVERTER_STATE = "STATE"
+
+ESS_STATE = "STATE"
+
+PVDR_STATE = "STATE"
 
 WORKING_STATE = "working"
 
@@ -193,6 +200,25 @@ PVS_SENSORS = {
         ],
 }
 
+ESS_SENSORS = {
+    "DCDC_SUPPLY": [
+        "v_dcdc_spply_v",
+        "DC Supply",
+        ELECTRIC_POTENTIAL_VOLT,
+        "mdi:flash",
+        None,
+        STATE_CLASS_MEASUREMENT
+        ],
+
+    "GATEWAY_SUPPLY": [
+        "v_gateway_v",
+        "GATEWAY Supply",
+        ELECTRIC_POTENTIAL_VOLT,
+        "mdi:flash",
+        None,
+        STATE_CLASS_MEASUREMENT
+        ],
+}
 
 PVDR_SENSORS = {
     "PVDR_GRID1": [
