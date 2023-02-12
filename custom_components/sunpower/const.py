@@ -219,6 +219,10 @@ ESS_SENSORS = {
         None,
         STATE_CLASS_MEASUREMENT
         ],
+
+
+    """Add temp & humidity"""
+}
 }
 
 PVDR_SENSORS = {
