@@ -16,7 +16,7 @@ from homeassistant.const import (
     DEVICE_CLASS_CURRENT,
     DEVICE_CLASS_TEMPERATURE,
     DEVICE_CLASS_POWER_FACTOR,
-    BINARY_SENSOR
+    ATTR_STATE
 )
 
 from homeassistant.components.sensor import (
@@ -257,7 +257,7 @@ PVDR_SENSORS = {
     "PVDR_Relay1": [
         "relay1_state",
         "relay1_state",
-        BINARY_SENSOR,
+        ATTR_STATE,
         "mdi:ElectricSwitch",
         None,
         STATE_CLASS_MEASUREMENT],
@@ -265,7 +265,7 @@ PVDR_SENSORS = {
     "PVDR_Relay2": [
         "relay2_state",
         "relay2_state",
-        BINARY_SENSOR,
+        ATTR_STATE,
         "mdi:ElectricSwitch",
         None,
         STATE_CLASS_MEASUREMENT],
