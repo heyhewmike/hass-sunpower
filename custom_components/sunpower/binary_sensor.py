@@ -11,6 +11,8 @@ from .const import (
     PVS_DEVICE_TYPE,
     INVERTER_DEVICE_TYPE,
     METER_DEVICE_TYPE,
+    ESS_DEVICE_TYPE,
+    PVDR_DEVICE_TYPE,
     PVS_STATE,
     METER_STATE,
     INVERTER_STATE,
@@ -18,7 +20,7 @@ from .const import (
     ESS_SENSORS,
     PVDR_SENSORS,
 )
-from .entity import SunPowerPVSEntity, SunPowerMeterEntity, SunPowerInverterEntity, SunPowerPVDREntity, SunPowerESSEntity
+from .entity import SunPowerPVSEntity, SunPowerMeterEntity, SunPowerInverterEntity, SunPowerPVDREntity, SunPowerESSEntity,
 
 _LOGGER = logging.getLogger(__name__)
 

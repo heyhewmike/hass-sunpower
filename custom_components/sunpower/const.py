@@ -15,7 +15,8 @@ from homeassistant.const import (
     DEVICE_CLASS_VOLTAGE,
     DEVICE_CLASS_CURRENT,
     DEVICE_CLASS_TEMPERATURE,
-    DEVICE_CLASS_POWER_FACTOR
+    DEVICE_CLASS_POWER_FACTOR,
+    BINARY_SENSOR
 )
 
 from homeassistant.components.sensor import (
@@ -37,7 +38,7 @@ SETUP_TIMEOUT_MIN = 5
 PVS_DEVICE_TYPE = "PVS"
 INVERTER_DEVICE_TYPE = "Inverter"
 METER_DEVICE_TYPE = "Power Meter"
-ESS_DEVICE_TYPE = "Energy Storage System"
+ESS_DEVICE_TYPE = "ESS Hub"
 PVDR_DEVICE_TYPE = "PV Disconnect"
 
 PVS_STATE = "STATE"
@@ -60,7 +61,7 @@ METER_SENSORS = {
         "Lifetime Power",
         ENERGY_KILO_WATT_HOUR,
         "mdi:flash",
-        DEVICE_CLASS_ENERGY, STATE_CLASS_TOTAL_INCREASING,
+        DEVICE_CLASS_ENERGY, STATE_CLASS_TOTAL,
     ],
     "METER_KW": ["p_3phsum_kw", "Power", POWER_KILO_WATT, "mdi:flash",
                  DEVICE_CLASS_POWER, STATE_CLASS_MEASUREMENT],
@@ -85,7 +86,7 @@ METER_SENSORS = {
     "METER_L12_V": ["v12_v", "Supply Volts", ELECTRIC_POTENTIAL_VOLT, "mdi:flash",
                     DEVICE_CLASS_VOLTAGE, STATE_CLASS_MEASUREMENT],
     "METER_TO_GRID": ["neg_ltea_3phsum_kwh", "KWH To Grid", ENERGY_KILO_WATT_HOUR, "mdi:flash",
-                      DEVICE_CLASS_ENERGY, STATE_CLASS_TOTAL_INCREASING],
+                      DEVICE_CLASS_ENERGY, STATE_CLASS_TOTAL],
     "METER_TO_HOME": ["pos_ltea_3phsum_kwh", "KWH To Home", ENERGY_KILO_WATT_HOUR, "mdi:flash",
                       DEVICE_CLASS_ENERGY, STATE_CLASS_TOTAL_INCREASING]
 }
@@ -223,7 +224,7 @@ ESS_SENSORS = {
 PVDR_SENSORS = {
     "PVDR_GRID1": [
         "v1n_grid_v",
-        "Voltage",
+        "v1n_grid_v",
         ELECTRIC_POTENTIAL_VOLT,
         "mdi:flash",
         DEVICE_CLASS_VOLTAGE,
@@ -231,7 +232,7 @@ PVDR_SENSORS = {
 
     "PVDR_GRID2": [
         "v2n_grid_v",
-        "Voltage",
+        "v2n_grid_v",
         ELECTRIC_POTENTIAL_VOLT,
         "mdi:flash",
         DEVICE_CLASS_VOLTAGE,
@@ -239,7 +240,7 @@ PVDR_SENSORS = {
 
     "PVDR_PV1": [
         "v1n_pv_v",
-        "Voltage",
+        "v1n_pv_v",
         ELECTRIC_POTENTIAL_VOLT,
         "mdi:flash",
         DEVICE_CLASS_VOLTAGE,
@@ -247,9 +248,25 @@ PVDR_SENSORS = {
 
     "PVDR_PV2": [
         "v2n_pv_v",
-        "Voltage",
+        "v2n_pv_v",
         ELECTRIC_POTENTIAL_VOLT,
         "mdi:flash",
         DEVICE_CLASS_VOLTAGE,
+        STATE_CLASS_MEASUREMENT],
+
+    "PVDR_Relay1": [
+        "relay1_state",
+        "relay1_state",
+        BINARY_SENSOR,
+        "mdi:ElectricSwitch",
+        None,
+        STATE_CLASS_MEASUREMENT],
+
+    "PVDR_Relay2": [
+        "relay2_state",
+        "relay2_state",
+        BINARY_SENSOR,
+        "mdi:ElectricSwitch",
+        None,
         STATE_CLASS_MEASUREMENT],
 }
