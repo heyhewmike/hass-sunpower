@@ -11,12 +11,16 @@ from .const import (
     PVS_DEVICE_TYPE,
     INVERTER_DEVICE_TYPE,
     METER_DEVICE_TYPE,
+    ESS_DEVICE_TYPE,
+    PVDR_DEVICE_TYPE,
     PVS_STATE,
     METER_STATE,
     INVERTER_STATE,
     WORKING_STATE,
+    ESS_SENSORS,
+    PVDR_SENSORS,
 )
-from .entity import SunPowerPVSEntity, SunPowerMeterEntity, SunPowerInverterEntity
+from .entity import SunPowerPVSEntity, SunPowerMeterEntity, SunPowerInverterEntity, SunPowerPVDREntity, SunPowerESSEntity,
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -51,6 +55,18 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         else:
             for data in sunpower_data[INVERTER_DEVICE_TYPE].values():
                 entities.append(SunPowerInverterState(coordinator, data, pvs, do_descriptive_names))
+
+        if ESS_DEVICE_TYPE not in sunpower_data:
+            _LOGGER.error("Cannot find any Energy Storage System")
+        else:
+            for data in sunpower_data[ESS_DEVICE_TYPE].values():
+                entities.append(SunPowerESSState(coordinator, data, pvs, do_descriptive_names))
+
+        if PVDR_DEVICE_TYPE not in sunpower_data:
+            _LOGGER.error("Cannot find any PV Disco Relay")
+        else:
+            for data in sunpower_data[PVDR_DEVICE_TYPE].values():
+                entities.append(SunPowerPVDRState(coordinator, data, pvs, do_descriptive_names))
 
     async_add_entities(entities, True)
 
@@ -156,6 +172,76 @@ class SunPowerInverterState(SunPowerInverterEntity, BinarySensorEntity):
     def state(self):
         """Get the current value"""
         return self.coordinator.data[INVERTER_DEVICE_TYPE][self.base_unique_id][INVERTER_STATE]
+
+    @property
+    def is_on(self):
+        """Return true if the binary sensor is on."""
+        return self.state == WORKING_STATE
+
+class SunPowerESSState(SunPowerESSEntity, BinarySensorEntity):
+    """Representation of SunPower ESS Working State"""
+
+    def __init__(self, coordinator, ess_info, do_descriptive_names):
+        super().__init__(coordinator, ess_info)
+        self._do_descriptive_names = do_descriptive_names
+
+    @property
+    def name(self):
+        """Device Name."""
+        if self._do_descriptive_names:
+            return "ESS System State"
+        else:
+            return "System State"
+
+    @property
+    def device_class(self):
+        """Device Class."""
+        return DEVICE_CLASS_POWER
+
+    @property
+    def unique_id(self):
+        """Device Uniqueid."""
+        return f"{self.base_unique_id}_ess_state"
+
+    @property
+    def state(self):
+        """Get the current value"""
+        return self.coordinator.data[ESS_DEVICE_TYPE][self.base_unique_id][ESS_STATE]
+
+    @property
+    def is_on(self):
+        """Return true if the binary sensor is on."""
+        return self.state == WORKING_STATE
+
+class SunPowerPVDRState(SunPowerPVDREntity, BinarySensorEntity):
+    """Representation of SunPower PVDR Working State"""
+
+    def __init__(self, coordinator, pvdr_info, do_descriptive_names):
+        super().__init__(coordinator, pvdr_info)
+        self._do_descriptive_names = do_descriptive_names
+
+    @property
+    def name(self):
+        """Device Name."""
+        if self._do_descriptive_names:
+            return "PVDR System State"
+        else:
+            return "System State"
+
+    @property
+    def device_class(self):
+        """Device Class."""
+        return DEVICE_CLASS_POWER
+
+    @property
+    def unique_id(self):
+        """Device Uniqueid."""
+        return f"{self.base_unique_id}_pvdr_state"
+
+    @property
+    def state(self):
+        """Get the current value"""
+        return self.coordinator.data[PVDR_DEVICE_TYPE][self.base_unique_id][PVDR_STATE]
 
     @property
     def is_on(self):

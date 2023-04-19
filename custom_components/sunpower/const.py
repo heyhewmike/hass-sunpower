@@ -15,7 +15,8 @@ from homeassistant.const import (
     DEVICE_CLASS_VOLTAGE,
     DEVICE_CLASS_CURRENT,
     DEVICE_CLASS_TEMPERATURE,
-    DEVICE_CLASS_POWER_FACTOR
+    DEVICE_CLASS_POWER_FACTOR,
+    ATTR_STATE
 )
 
 from homeassistant.components.sensor import (
@@ -31,17 +32,24 @@ SUNPOWER_OBJECT = "sunpower"
 SUNPOWER_HOST = "host"
 SUNPOWER_COORDINATOR = "coordinator"
 UPDATE_INTERVAL = 120
+#UPDATE_INTERVAL = 240
 SETUP_TIMEOUT_MIN = 5
 
 PVS_DEVICE_TYPE = "PVS"
 INVERTER_DEVICE_TYPE = "Inverter"
 METER_DEVICE_TYPE = "Power Meter"
+ESS_DEVICE_TYPE = "ESS Hub"
+PVDR_DEVICE_TYPE = "PV Disconnect"
 
 PVS_STATE = "STATE"
 
 METER_STATE = "STATE"
 
 INVERTER_STATE = "STATE"
+
+ESS_STATE = "STATE"
+
+PVDR_STATE = "STATE"
 
 WORKING_STATE = "working"
 
@@ -80,8 +88,10 @@ METER_SENSORS = {
     "METER_TO_GRID": ["neg_ltea_3phsum_kwh", "KWH To Grid", ENERGY_KILO_WATT_HOUR, "mdi:flash",
                       DEVICE_CLASS_ENERGY, STATE_CLASS_TOTAL],
     "METER_TO_HOME": ["pos_ltea_3phsum_kwh", "KWH To Home", ENERGY_KILO_WATT_HOUR, "mdi:flash",
-                      DEVICE_CLASS_ENERGY, STATE_CLASS_TOTAL_INCREASING]
-}
+                      DEVICE_CLASS_ENERGY, STATE_CLASS_TOTAL_INCREASING],
+    "LIFE_TO_GRID": ["net_ltea_3phsum_kwh", "Lifetime KWH to Grid", ENERGY_KILO_WATT_HOUR, "mdi:flash",
+                      DEVICE_CLASS_ENERGY, STATE_CLASS_TOTAL]
+}   
 
 INVERTER_SENSORS = {
     "INVERTER_NET_KWH": [
@@ -191,4 +201,78 @@ PVS_SENSORS = {
         None,
         STATE_CLASS_MEASUREMENT
         ],
+}
+
+ESS_SENSORS = {
+    "DCDC_SUPPLY": [
+        "v_dcdc_spply_v",
+        "DC Supply",
+        ELECTRIC_POTENTIAL_VOLT,
+        "mdi:flash",
+        None,
+        STATE_CLASS_MEASUREMENT
+        ],
+
+    "GATEWAY_SUPPLY": [
+        "v_gateway_v",
+        "GATEWAY Supply",
+        ELECTRIC_POTENTIAL_VOLT,
+        "mdi:flash",
+        None,
+        STATE_CLASS_MEASUREMENT
+        ],
+
+
+    """Add temp & humidity"""
+}
+}
+
+PVDR_SENSORS = {
+    "PVDR_GRID1": [
+        "v1n_grid_v",
+        "v1n_grid_v",
+        ELECTRIC_POTENTIAL_VOLT,
+        "mdi:flash",
+        DEVICE_CLASS_VOLTAGE,
+        STATE_CLASS_MEASUREMENT],
+
+    "PVDR_GRID2": [
+        "v2n_grid_v",
+        "v2n_grid_v",
+        ELECTRIC_POTENTIAL_VOLT,
+        "mdi:flash",
+        DEVICE_CLASS_VOLTAGE,
+        STATE_CLASS_MEASUREMENT],
+
+    "PVDR_PV1": [
+        "v1n_pv_v",
+        "v1n_pv_v",
+        ELECTRIC_POTENTIAL_VOLT,
+        "mdi:flash",
+        DEVICE_CLASS_VOLTAGE,
+        STATE_CLASS_MEASUREMENT],
+
+    "PVDR_PV2": [
+        "v2n_pv_v",
+        "v2n_pv_v",
+        ELECTRIC_POTENTIAL_VOLT,
+        "mdi:flash",
+        DEVICE_CLASS_VOLTAGE,
+        STATE_CLASS_MEASUREMENT],
+
+    "PVDR_Relay1": [
+        "relay1_state",
+        "relay1_state",
+        ATTR_STATE,
+        "mdi:ElectricSwitch",
+        None,
+        STATE_CLASS_MEASUREMENT],
+
+    "PVDR_Relay2": [
+        "relay2_state",
+        "relay2_state",
+        ATTR_STATE,
+        "mdi:ElectricSwitch",
+        None,
+        STATE_CLASS_MEASUREMENT],
 }
