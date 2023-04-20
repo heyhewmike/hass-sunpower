@@ -6,7 +6,7 @@ import voluptuous as vol
 from homeassistant import config_entries, core, exceptions
 from homeassistant.const import CONF_HOST
 
-from .const import DOMAIN, SUNPOWER_HOST, SUNPOWER_DESCRIPTIVE_NAMES
+from .const import DOMAIN, SUNPOWER_HOST, SUNPOWER_DESCRIPTIVE_NAMES, UPDATE_INTERVAL
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -14,6 +14,7 @@ DATA_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_HOST): str,
         vol.Required(SUNPOWER_DESCRIPTIVE_NAMES, default=False): bool,
+        vol.Required(UPDATE_INTERVAL, default=120): str,
     }
 )
 
@@ -49,6 +50,8 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 info = await validate_input(self.hass, user_input)
                 await self.async_set_unique_id(user_input[SUNPOWER_HOST])
                 return self.async_create_entry(title=info["title"], data=user_input)
+                update = user_input[UPDATE_INTERVAL]
+                return self.async_create_entry(title=update, data=user_input)
             except CannotConnect:
                 errors["base"] = "cannot_connect"
             except Exception:  # pylint: disable=broad-except
