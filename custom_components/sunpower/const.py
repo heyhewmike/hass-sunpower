@@ -89,8 +89,8 @@ METER_SENSORS = {
                       DEVICE_CLASS_ENERGY, STATE_CLASS_TOTAL],
     "METER_TO_HOME": ["pos_ltea_3phsum_kwh", "KWH To Home", ENERGY_KILO_WATT_HOUR, "mdi:flash",
                       DEVICE_CLASS_ENERGY, STATE_CLASS_TOTAL_INCREASING],
-    "LIFE_TO_GRID": ["net_ltea_3phsum_kwh", "Lifetime KWH to Grid", ENERGY_KILO_WATT_HOUR, "mdi:flash",
-                      DEVICE_CLASS_ENERGY, STATE_CLASS_TOTAL]
+    "LIFE_TO_GRID": ["net_ltea_3phsum_kwh", "Lifetime to Grid", ENERGY_KILO_WATT_HOUR, "mdi:flash",
+                     DEVICE_CLASS_ENERGY, STATE_CLASS_TOTAL]
 }   
 
 INVERTER_SENSORS = {
