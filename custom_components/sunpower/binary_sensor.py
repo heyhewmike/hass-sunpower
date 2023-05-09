@@ -164,18 +164,18 @@ class SunPowerInverterState(SunPowerInverterEntity, BinarySensorEntity):
 
 
 ## Update for ESS
-class SunPowerInverterState(SunPowerInverterEntity, BinarySensorEntity):
-    """Representation of SunPower Inverter Working State"""
+class SunPowerESSState(SunPowerESSEntity, BinarySensorEntity):
+    """Representation of SunPower ESS Working State"""
 
-    def __init__(self, coordinator, inverter_info, pvs_info, do_descriptive_names):
-        super().__init__(coordinator, inverter_info, pvs_info)
+    def __init__(self, coordinator, ess_info, pvs_info, do_descriptive_names):
+        super().__init__(coordinator, ess_info, pvs_info)
         self._do_descriptive_names = do_descriptive_names
 
     @property
     def name(self):
         """Device Name."""
         if self._do_descriptive_names:
-            return f"{self._inverter_info['DESCR']} System State"
+            return f"{self._ess_info['DESCR']} System State"
         else:
             return "System State"
 
@@ -187,7 +187,7 @@ class SunPowerInverterState(SunPowerInverterEntity, BinarySensorEntity):
     @property
     def unique_id(self):
         """Device Uniqueid."""
-        return f"{self.base_unique_id}_inverter_state"
+        return f"{self.base_unique_id}_ess_state"
 
     @property
     def state(self):
