@@ -42,9 +42,8 @@ class SunPowerESS:
     if you find this usefull please complain to sunpower and your sunpower dealer that they
     do not have a public API"""
 
-    def __init__(self, host):
+    def __init__(self):
         """Initialize."""
-        self.host = host
         self.command_url = "http://{0}/cgi-bin/dl_cgi/energy-storage-system/status
 
     def generic_command(self, command):

@@ -15,7 +15,9 @@ from homeassistant.const import (
     DEVICE_CLASS_VOLTAGE,
     DEVICE_CLASS_CURRENT,
     DEVICE_CLASS_TEMPERATURE,
-    DEVICE_CLASS_POWER_FACTOR
+    DEVICE_CLASS_POWER_FACTOR,
+    TIME,
+    TEMP_CELSIUS
 )
 
 from homeassistant.components.sensor import (
@@ -192,3 +194,5 @@ PVS_SENSORS = {
         STATE_CLASS_MEASUREMENT
         ],
 }
+
+## Add in the ESS Device

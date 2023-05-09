@@ -16,7 +16,7 @@ from .const import (
     INVERTER_STATE,
     WORKING_STATE,
 )
-from .entity import SunPowerPVSEntity, SunPowerMeterEntity, SunPowerInverterEntity
+from .entity import SunPowerPVSEntity, SunPowerMeterEntity, SunPowerInverterEntity, SunPowerESS
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -127,6 +127,43 @@ class SunPowerMeterState(SunPowerMeterEntity, BinarySensorEntity):
         return self.state == WORKING_STATE
 
 
+class SunPowerInverterState(SunPowerInverterEntity, BinarySensorEntity):
+    """Representation of SunPower Inverter Working State"""
+
+    def __init__(self, coordinator, inverter_info, pvs_info, do_descriptive_names):
+        super().__init__(coordinator, inverter_info, pvs_info)
+        self._do_descriptive_names = do_descriptive_names
+
+    @property
+    def name(self):
+        """Device Name."""
+        if self._do_descriptive_names:
+            return f"{self._inverter_info['DESCR']} System State"
+        else:
+            return "System State"
+
+    @property
+    def device_class(self):
+        """Device Class."""
+        return DEVICE_CLASS_POWER
+
+    @property
+    def unique_id(self):
+        """Device Uniqueid."""
+        return f"{self.base_unique_id}_inverter_state"
+
+    @property
+    def state(self):
+        """Get the current value"""
+        return self.coordinator.data[INVERTER_DEVICE_TYPE][self.base_unique_id][INVERTER_STATE]
+
+    @property
+    def is_on(self):
+        """Return true if the binary sensor is on."""
+        return self.state == WORKING_STATE
+
+
+## Update for ESS
 class SunPowerInverterState(SunPowerInverterEntity, BinarySensorEntity):
     """Representation of SunPower Inverter Working State"""
 

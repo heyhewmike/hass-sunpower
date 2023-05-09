@@ -6,7 +6,7 @@ import time
 
 import voluptuous as vol
 
-from .sunpower import SunPowerMonitor, ConnectionException, ParseException
+from .sunpower import SunPowerMonitor, ConnectionException, ParseException, SunPowerESS
 
 from homeassistant.config_entries import SOURCE_IMPORT, ConfigEntry
 from homeassistant.core import HomeAssistant
@@ -27,7 +27,7 @@ CONFIG_SCHEMA = vol.Schema({DOMAIN: vol.Schema({})}, extra=vol.ALLOW_EXTRA)
 
 PLATFORMS = ["sensor", "binary_sensor"]
 
-
+## Recreate for sunpoweress
 def sunpower_fetch(sunpower_monitor):
     """Basic data fetch routine to get and reformat sunpower data to a dict of device type and serial #"""
     try:
@@ -64,7 +64,7 @@ async def async_setup(hass: HomeAssistant, config: dict):
     )
     return True
 
-
+##Insert sunpoweress
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     """Set up sunpower from a config entry."""
     entry_id = entry.entry_id

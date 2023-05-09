@@ -75,3 +75,25 @@ class SunPowerInverterEntity(CoordinatorEntity):
             "via_device": self._pvs_info["SERIAL"],
         }
         return device_info
+
+## ESS
+class SunPowerESS(CoordinatorEntity):
+    """Base class for sunpower ESS entities."""
+
+    def __init__(self, coordinator, ess_info, pvs_info):
+        """Initialize the sensor."""
+        super().__init__(coordinator)
+        self.base_unique_id = ess_info["serial_number"]
+        self._pvs_info = pvs_info
+        self._ess_info = ess_info
+
+    @property
+    def device_info(self):
+        """Sunpower Inverter device info."""
+        device_info = {
+            "identifiers": {(DOMAIN, self.base_unique_id)},
+            "name": "ESS", #self._inverter_info["DESCR"],
+            "manufacturer": "SunPower", #self._inverter_info["TYPE"],
+            "model": "SunVault", #self._inverter_info["MODEL"],
+        }
+        return device_info
