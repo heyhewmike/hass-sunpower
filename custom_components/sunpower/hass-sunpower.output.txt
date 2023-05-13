@@ -1,0 +1,26 @@
+Battery Details:
+Amperage: -7.3
+Voltage: 53
+Customer State of Charge: 79
+System State of Charge: 82
+Temperature: 297.6
+Last Updated: 2023-05-13 04:08:38
+Serial #: BC212500679733751040
+ESS State:
+Operational Mode: SELF_CONSUMPTION
+PTO State: True
+Storage Controller Status: RUNNING
+ESS Status:
+Enclosure Humidity: 29
+Enclosure Temp: 30
+Meter AggPower: 0.374
+Meter Reading Last Update: 2023-05-13 04:08:50
+Meter A Current: 1.54
+Meter A Last Update: 2023-05-13 04:08:50
+Meter A Power: 186.3554
+Meter A Voltage: 121.01
+Meter B Current: 1.6600000000000001
+Meter B Last Update: 2023-05-13 04:08:50
+Meter B Power: 200.87660000000002
+Meter B Voltage: 121.01
+Meter Reading Last Update: 2023-05-13 04:08:50
