@@ -20,6 +20,8 @@ data = response.json()
 # to the desired value. The find method is then used to search the JSON response for the value
 # that matches the JSONPath expression, and the value attribute is used to extract the actual
 # value.
+# It is my best guess that in the below jsonpath_....status[0]......") string the [0] can be replaced by [1] and incremented for each battery, inverters and each piece of hardware is added. This has not yet been tested.
+
 ## Battery Status
 jsonpath_expression_amp = parse("$.ess_report.battery_status[0].battery_amperage.value")
 jsonpath_expression_voltage = parse("$.ess_report.battery_status[0].battery_voltage.value")
