@@ -192,3 +192,69 @@ PVS_SENSORS = {
         STATE_CLASS_MEASUREMENT
         ],
 }
+####@@@@@@
+#Provided by sunvault.py
+####@@@@@@
+SUNVAULT_SENSORS = {
+    "BATTERY_AMPS": ["battery_amp", "Amps", ELECTRIC_CURRENT_AMPERE, "mdi:flash",
+                      DEVICE_CLASS_CURRENT, STATE_CLASS_MEASUREMENT],
+    "BATTERY_VOLTS": ["battery_voltage", "Voltage", ELECTRIC_POTENTIAL_VOLT, "mdi:flash",
+                       DEVICE_CLASS_VOLTAGE, STATE_CLASS_MEASUREMENT],
+    "CUST_STATE_CHARGE": ["battery_custSOC", "System Load", "", "mdi:gauge",
+                 None, STATE_CLASS_MEASUREMENT], # Percentage
+    "SYS_STATE_CHARGE": ["battery_sysSOC", "System Load", "", "mdi:gauge",
+                 None, STATE_CLASS_MEASUREMENT], # Percentage
+}
+
+#    "INVERTER_AMPS": ["i_3phsum_a", "Amps", ELECTRIC_CURRENT_AMPERE, "mdi:flash",
+#                      DEVICE_CLASS_CURRENT, STATE_CLASS_MEASUREMENT],
+#    "INVERTER_VOLTS": ["vln_3phavg_v", "Voltage", ELECTRIC_POTENTIAL_VOLT, "mdi:flash",
+#                       DEVICE_CLASS_VOLTAGE, STATE_CLASS_MEASUREMENT],
+#"PVS_LOAD": [
+#        "dl_cpu_load", "System Load", "", "mdi:gauge", None, STATE_CLASS_MEASUREMENT],
+#### SunVault
+ = jsonpath_expression_amp.find(data)[0].value
+ = jsonpath_expression_voltage.find(data)[0].value
+ = jsonpath_expression_custSOC.find(data)[0].value
+ = jsonpath_expression_sysSOC.find(data)[0].value
+battery_temp = jsonpath_expression_temp.find(data)[0].value
+battery_last_updated = jsonpath_expression_last_updated.find(data)[0].value
+battery_serial = jsonpath_expression_serial.find(data)[0].value
+## ESS State
+ess_mode = jsonpath_expression_mode.find(data)[0].value
+ess_pto = jsonpath_expression_pto.find(data)[0].value
+ess_scstatus = jsonpath_expression_scStatus.find(data)[0].value
+## ESS Status
+ess_enHumid = jsonpath_expression_enHumid.find(data)[0].value
+ess_enTemp = jsonpath_expression_enTemp.find(data)[0].value
+ess_Meter_aggPower = jsonpath_expression_essMeter_aggPower.find(data)[0].value
+ess_Meter_ReadingLast = jsonpath_expression_essMeter_ReadingLast.find(data)[0].value
+ess_meterACurrent = jsonpath_expression_meterACurrent.find(data)[0].value
+ess_meterALast = jsonpath_expression_meterALast.find(data)[0].value
+ess_meterAPower = jsonpath_expression_meterAPower.find(data)[0].value
+ess_meterAVoltage = jsonpath_expression_meterAVoltage.find(data)[0].value
+ess_meterBCurrent = jsonpath_expression_meterBCurrent.find(data)[0].value
+ess_meterBLast = jsonpath_expression_meterBLast.find(data)[0].value
+ess_meterBPower = jsonpath_expression_meterBPower.find(data)[0].value
+ess_meterBVoltage = jsonpath_expression_meterBVoltage.find(data)[0].value
+ess_statusLast = jsonpath_expression_meterLast.find(data)[0].value
+ess_statusSerial = jsonpath_expression_meterSerial.find(data)[0].value
+## Hub Plus Status
+hub_AuxVolt = jsonpath_expression_hubAuxVolt.find(data)[0].value
+hub_ContactError = jsonpath_expression_hubContactError.find(data)[0].value
+hub_ContactPostion = jsonpath_expression_hubContactPostion.find(data)[0].value
+hub_GridFreqState = jsonpath_expression_hubGridFreqState.find(data)[0].value
+hub_GridP1Volt = jsonpath_expression_hubGridP1Volt.find(data)[0].value
+hub_GridP2Volt = jsonpath_expression_hubGridP2Volt.find(data)[0].value
+hub_GridVoltState = jsonpath_expression_hubGridVoltState.find(data)[0].value
+hub_Humidity = jsonpath_expression_hubHumidity.find(data)[0].value
+hub_Temp = jsonpath_expression_hubTemp.find(data)[0].value
+hub_InverterConnVolt = jsonpath_expression_hubInverterConnVolt.find(data)[0].value
+hub_JumpStartVolt = jsonpath_expression_hubJumpStartVolt.find(data)[0].value
+hub_LastUpdated = jsonpath_expression_hubLastUpdated.find(data)[0].value
+hub_LoadFreqState = jsonpath_expression_hubLoadFreqState.find(data)[0].value
+hub_LoadP1Volt = jsonpath_expression_hubLoadP1Volt.find(data)[0].value
+hub_LoadP2Volt = jsonpath_expression_hubLoadP2Volt.find(data)[0].value
+hub_LoadVoltState = jsonpath_expression_load_voltage_state.find(data)[0].value
+hub_MainVolt = jsonpath_expression_hubMainVolt.find(data)[0].value
+hub_SerialNumber = jsonpath_expression_hubSerialNum.find(data)[0].value

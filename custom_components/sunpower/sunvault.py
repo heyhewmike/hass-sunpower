@@ -54,7 +54,7 @@ jsonpath_expression_meterBPower = parse("$.ess_report.ess_status[0].ess_meter_re
 jsonpath_expression_meterBVoltage = parse("$.ess_report.ess_status[0].ess_meter_reading.meter_b.reading.voltage.value")
 jsonpath_expression_meterLast = parse("$.ess_report.ess_status[0].ess_meter_reading.last_updated")
 # # The below line causes an error. Need to debug.
-#jsonpath_expression_meterSerial = parse("$.ess_report.ess_status[0].ess_meter_reading.serial_number")
+jsonpath_expression_meterSerial = parse("$.ess_report.ess_status[0].serial_number")
 
 ## Hub Plus Status
 jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
@@ -65,16 +65,16 @@ jsonpath_expression_hubGridP1Volt = parse("$.ess_report.hub_plus_status.grid_pha
 jsonpath_expression_hubGridP2Volt = parse("$.ess_report.hub_plus_status.grid_phase2_voltage.value")
 jsonpath_expression_hubGridVoltState = parse("$.ess_report.hub_plus_status.grid_voltage_state")
 jsonpath_expression_hubHumidity = parse("$.ess_report.hub_plus_status.hub_humidity.value")
-#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
-#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
-#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
-#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
-#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
-#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
-#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
-#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
-#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
-#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+jsonpath_expression_hubTemp = parse("$.ess_report.hub_plus_status.hub_temperature.value")
+jsonpath_expression_hubInverterConnVolt = parse("$.ess_report.hub_plus_status.inverter_connection_voltage.value")
+jsonpath_expression_hubJumpStartVolt = parse("$.ess_report.hub_plus_status.jump_start_voltage.value")
+jsonpath_expression_hubLastUpdated = parse("$.ess_report.hub_plus_status.last_updated")
+jsonpath_expression_hubLoadFreqState = parse("$.ess_report.hub_plus_status.load_frequency_state")
+jsonpath_expression_hubLoadP1Volt = parse("$.ess_report.hub_plus_status.load_phase1_voltage.value")
+jsonpath_expression_hubLoadP2Volt = parse("$.ess_report.hub_plus_status.load_phase2_voltage.value")
+jsonpath_expression_load_voltage_state = parse("$.ess_report.hub_plus_status.load_voltage_state")
+jsonpath_expression_hubMainVolt = parse("$.ess_report.hub_plus_status.main_voltage.value")
+jsonpath_expression_hubSerialNum = parse("$.ess_report.hub_plus_status.serial_number")
 #jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
 #jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
 #jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
@@ -113,7 +113,7 @@ ess_meterBLast = jsonpath_expression_meterBLast.find(data)[0].value
 ess_meterBPower = jsonpath_expression_meterBPower.find(data)[0].value
 ess_meterBVoltage = jsonpath_expression_meterBVoltage.find(data)[0].value
 ess_statusLast = jsonpath_expression_meterLast.find(data)[0].value
-#ess_statusSerial = jsonpath_expression_meterSerial.find(data)[0].value
+ess_statusSerial = jsonpath_expression_meterSerial.find(data)[0].value
 ## Hub Plus Status
 hub_AuxVolt = jsonpath_expression_hubAuxVolt.find(data)[0].value
 hub_ContactError = jsonpath_expression_hubContactError.find(data)[0].value
@@ -123,6 +123,16 @@ hub_GridP1Volt = jsonpath_expression_hubGridP1Volt.find(data)[0].value
 hub_GridP2Volt = jsonpath_expression_hubGridP2Volt.find(data)[0].value
 hub_GridVoltState = jsonpath_expression_hubGridVoltState.find(data)[0].value
 hub_Humidity = jsonpath_expression_hubHumidity.find(data)[0].value
+hub_Temp = jsonpath_expression_hubTemp.find(data)[0].value
+hub_InverterConnVolt = jsonpath_expression_hubInverterConnVolt.find(data)[0].value
+hub_JumpStartVolt = jsonpath_expression_hubJumpStartVolt.find(data)[0].value
+hub_LastUpdated = jsonpath_expression_hubLastUpdated.find(data)[0].value
+hub_LoadFreqState = jsonpath_expression_hubLoadFreqState.find(data)[0].value
+hub_LoadP1Volt = jsonpath_expression_hubLoadP1Volt.find(data)[0].value
+hub_LoadP2Volt = jsonpath_expression_hubLoadP2Volt.find(data)[0].value
+hub_LoadVoltState = jsonpath_expression_load_voltage_state.find(data)[0].value
+hub_MainVolt = jsonpath_expression_hubMainVolt.find(data)[0].value
+hub_SerialNumber = jsonpath_expression_hubSerialNum.find(data)[0].value
 
 # Prints Values for Debugging & Testing only
 ## Battery Status
@@ -132,8 +142,8 @@ print("Voltage: " + str(battery_voltage))
 print("Customer State of Charge: " + str(battery_custSOC))
 print("System State of Charge: " + str(battery_sysSOC))
 print("Temperature: " + str(battery_temp))
-print("Last Updated: " + str(battery_last_updated))
-print("Serial #: " + str(battery_serial))
+print("Battery Status Last Updated: " + str(battery_last_updated))
+print("Battery Serial #: " + str(battery_serial))
 ## ESS State
 print("ESS State:")
 print("Operational Mode: " + str(ess_mode))
@@ -154,7 +164,7 @@ print("Meter B Last Update: " + str(ess_meterBLast))
 print("Meter B Power: " + str(ess_meterBPower))
 print("Meter B Voltage: " + str(ess_meterBVoltage))
 print("Meter Reading Last Update: " + str(ess_statusLast))
-#print("Meter Serial: " + str(ess_statusSerial))
+print("ESS Meter Serial: " + str(ess_statusSerial))
 ## Hub Plus Status
 print("Hub Plus Status:")
 print("Aux Port Voltage: " + str(hub_AuxVolt))
@@ -165,60 +175,19 @@ print("Grid Phase 1 Voltage: " + str(hub_GridP1Volt))
 print("Grid Phase 2 Voltage: " + str(hub_GridP2Volt))
 print("Grid Voltage Stage: " + str(hub_GridVoltState))
 print("Humidity: " + str(hub_Humidity))
+print("Hub Temp: " + str(hub_Temp))
+print("Inverter Connection Voltage: " + str(hub_InverterConnVolt))
+print("Jump Start Voltage: " + str(hub_JumpStartVolt))
+print("Hub Last Updated: " + str(hub_LastUpdated))
+print("Load Phase 1 Voltage: " + str(hub_LoadP1Volt))
+print("Load Phase 2 Voltage: " + str(hub_LoadP2Volt))
+print("Load Voltage State: " + str(hub_LoadVoltState))
+print("Main Voltage: " + str(hub_MainVolt))
+print("Hub Serial #: " + str(hub_SerialNumber))
 
 ######### NOTES:: ##########
 
 
-#"hub_plus_status":	{
-#			"aux_port_voltage":	{
-#				"unit":	"V",
-#				"value":	11.232000000000001
-#			},
-#			"contactor_error":	"NONE",
-#			"contactor_position":	"CLOSED",
-#			"grid_frequency_state":	"METER_FREQ_IN_RANGE",
-#			"grid_phase1_voltage":	{
-#				"unit":	"V",
-#				"value":	122.9
-#			},
-#			"grid_phase2_voltage":	{
-#				"unit":	"V",
-#				"value":	122.2
-#			},
-#			"grid_voltage_state":	"METER_VOLTAGE_IN_RANGE",
-#			"hub_humidity":	{
-#				"unit":	"%",
-#				"value":	34
-#			},
-#			"hub_temperature":	{
-#				"unit":	"C",
-#				"value":	26
-#			},
-#			"inverter_connection_voltage":	{
-#				"unit":	"V",
-#				"value":	0.247
-#			},
-#			"jump_start_voltage":	{
-#				"unit":	"V",
-#				"value":	2.992
-#			},
-#			"last_updated":	"2023-05-13 02:13:14",
-#			"load_frequency_state":	"METER_FREQ_IN_RANGE",
-#			"load_phase1_voltage":	{
-#				"unit":	"V",
-#				"value":	122.80000000000001
-#			},
-#			"load_phase2_voltage":	{
-#				"unit":	"V",
-#				"value":	122
-#			},
-#			"load_voltage_state":	"METER_VOLTAGE_IN_RANGE",
-#			"main_voltage":	{
-#				"unit":	"V",
-#				"value":	11.375
-#			},
-#			"serial_number":	"SY2241850-005506.30347"
-#		},
 #"inverter_status":	[{
 #				"a_n_voltage":	{
 #					"unit":	"V",
