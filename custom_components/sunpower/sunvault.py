@@ -20,7 +20,12 @@ data = response.json()
 # to the desired value. The find method is then used to search the JSON response for the value
 # that matches the JSONPath expression, and the value attribute is used to extract the actual
 # value.
-# It is my best guess that in the below jsonpath_....status[0]......") string the [0] can be replaced by [1] and incremented for each battery, inverters and each piece of hardware is added. This has not yet been tested.
+# It is my best guess that in the below jsonpath_....status[0]......") string the [0] can be
+# replaced by [1] and incremented for each battery, inverters and each piece of hardware is added.
+# This has not yet been tested.
+
+# Best guess at this moment is that a "Battery" is equal to 1 SunVault and not the number of cells inside the case.
+# I do not know how a Case with just cells and no inverter, aka ESS+, would show up.
 
 ## Battery Status
 jsonpath_expression_amp = parse("$.ess_report.battery_status[0].battery_amperage.value")
@@ -51,6 +56,36 @@ jsonpath_expression_meterLast = parse("$.ess_report.ess_status[0].ess_meter_read
 # # The below line causes an error. Need to debug.
 #jsonpath_expression_meterSerial = parse("$.ess_report.ess_status[0].ess_meter_reading.serial_number")
 
+## Hub Plus Status
+jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+jsonpath_expression_hubContactError = parse("$.ess_report.hub_plus_status.contactor_error")
+jsonpath_expression_hubContactPostion = parse("$.ess_report.hub_plus_status.contactor_position")
+jsonpath_expression_hubGridFreqState = parse("$.ess_report.hub_plus_status.grid_frequency_state")
+jsonpath_expression_hubGridP1Volt = parse("$.ess_report.hub_plus_status.grid_phase1_voltage.value")
+jsonpath_expression_hubGridP2Volt = parse("$.ess_report.hub_plus_status.grid_phase2_voltage.value")
+jsonpath_expression_hubGridVoltState = parse("$.ess_report.hub_plus_status.grid_voltage_state")
+jsonpath_expression_hubHumidity = parse("$.ess_report.hub_plus_status.hub_humidity.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+#jsonpath_expression_hubAuxVolt = parse("$.ess_report.hub_plus_status.aux_port_voltage.value")
+
 # Pulls Value into variable
 ## Battery Status
 battery_amp = jsonpath_expression_amp.find(data)[0].value
@@ -79,8 +114,17 @@ ess_meterBPower = jsonpath_expression_meterBPower.find(data)[0].value
 ess_meterBVoltage = jsonpath_expression_meterBVoltage.find(data)[0].value
 ess_statusLast = jsonpath_expression_meterLast.find(data)[0].value
 #ess_statusSerial = jsonpath_expression_meterSerial.find(data)[0].value
+## Hub Plus Status
+hub_AuxVolt = jsonpath_expression_hubAuxVolt.find(data)[0].value
+hub_ContactError = jsonpath_expression_hubContactError.find(data)[0].value
+hub_ContactPostion = jsonpath_expression_hubContactPostion.find(data)[0].value
+hub_GridFreqState = jsonpath_expression_hubGridFreqState.find(data)[0].value
+hub_GridP1Volt = jsonpath_expression_hubGridP1Volt.find(data)[0].value
+hub_GridP2Volt = jsonpath_expression_hubGridP2Volt.find(data)[0].value
+hub_GridVoltState = jsonpath_expression_hubGridVoltState.find(data)[0].value
+hub_Humidity = jsonpath_expression_hubHumidity.find(data)[0].value
 
-# Prints Values
+# Prints Values for Debugging & Testing only
 ## Battery Status
 print("Battery Details:")
 print("Amperage: " + str(battery_amp))
@@ -111,8 +155,19 @@ print("Meter B Power: " + str(ess_meterBPower))
 print("Meter B Voltage: " + str(ess_meterBVoltage))
 print("Meter Reading Last Update: " + str(ess_statusLast))
 #print("Meter Serial: " + str(ess_statusSerial))
+## Hub Plus Status
+print("Hub Plus Status:")
+print("Aux Port Voltage: " + str(hub_AuxVolt))
+print("Contactor Error: " + str(hub_ContactError))
+print("Contactor Position: " + str(hub_ContactPostion))
+print("Grid Frequency State: " + str(hub_GridFreqState))
+print("Grid Phase 1 Voltage: " + str(hub_GridP1Volt))
+print("Grid Phase 2 Voltage: " + str(hub_GridP2Volt))
+print("Grid Voltage Stage: " + str(hub_GridVoltState))
+print("Humidity: " + str(hub_Humidity))
 
 ######### NOTES:: ##########
+
 
 #"hub_plus_status":	{
 #			"aux_port_voltage":	{
