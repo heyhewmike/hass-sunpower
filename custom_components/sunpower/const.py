@@ -212,7 +212,8 @@ SUNVAULT_SENSORS = {
 #                       DEVICE_CLASS_VOLTAGE, STATE_CLASS_MEASUREMENT],
 #"PVS_LOAD": [
 #        "dl_cpu_load", "System Load", "", "mdi:gauge", None, STATE_CLASS_MEASUREMENT],
-#### SunVault
+
+#### SunVault -- below to be deleted. Used for reference while working.
  = jsonpath_expression_amp.find(data)[0].value
  = jsonpath_expression_voltage.find(data)[0].value
  = jsonpath_expression_custSOC.find(data)[0].value
